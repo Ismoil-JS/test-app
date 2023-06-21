@@ -7,6 +7,16 @@ const Navbar = () => {
     const [filterValue, setFilterValue] = useState('none');
     const [data, setData] = useState([])
 
+
+    // Fetching data from API using fetch. I know both methods but I used axios for this project
+
+    // useEffect(() => {
+    //     fetch('https://restcountries.com/v2/all?fields=name,region,area')
+    //         .then(res => res.json())
+    //         .then(data => { setData(data) })
+    // }, [])
+    // This is for fetching data using axios
+
     useEffect(() => {
         axios.get('https://restcountries.com/v2/all?fields=name,region,area')
             .then(res => {
@@ -23,7 +33,7 @@ const Navbar = () => {
     const endIndex = startIndex + 10;
 
     // Sorting and Filtering Logic
-    let filteredData = [...data];
+    let filteredData = data;
 
 
 
@@ -54,22 +64,21 @@ const Navbar = () => {
     const slicedData = filteredData.slice(startIndex, endIndex);
 
     // Event handlers for select elements
-    const handleSortChange = (event) => {
-        setSortValue(event.target.value);
+    const handleSortChange = ({ target: { value } }) => {
+        setSortValue(value);
     };
 
-    const handleFilterChange = (event) => {
-        setFilterValue(event.target.value);
+    const handleFilterChange = ({ target: { value } }) => {
+        setFilterValue(value);
+        setCurrentPage(1);
     };
+
     return (
         <>
             <div className={c.container}>
                 <div className={c.header}>
                     <h2>Testing</h2>
-                    <div className={c.header__search}>
-                        <input type="text" placeholder='Search...' />
-                        <button>Search</button>
-                    </div>
+
                     <h2 className={c.country}>Countries</h2>
                 </div>
                 <div className={c.navbar}>

@@ -1,12 +1,10 @@
 import React from 'react';
-import Main from './pages/main/Main.jsx';
-import Navbar from "./pages/navbar/Navbar.jsx";
+import Navbar from "./pages/elements/Elements.jsx";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <Main />
     </div>
   );
 }
